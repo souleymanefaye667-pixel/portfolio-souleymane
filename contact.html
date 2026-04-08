@@ -54,11 +54,38 @@
                 </div>
                 <form>
                     <div class="form-group"><input type="text" placeholder="Votre nom complet"></div>
-                    <div class="form-group"><input type="email" placeholder="Votre adresse mail"></div>
+                    <div class="form-group"><input type="email" placeholder="Votre adresse mail" required></div>
                     <div class="form-group"><textarea rows="4" placeholder="Votre message"></textarea></div>
-                    <button type="button">ENVOYER</button>
+                    <button type="submit">ENVOYER</button>
                 </form>
             </div>
+        </section>
+        <section class="card request-container">
+            <h2 class="form-title">🚀 Me confier un projet</h2>
+            <form class="project-form">
+                <div class="input-group">
+                    <label for="service">Type de service recherché :</label>
+                    <select id="service" name="service" required>
+                        <option value="web">Développement Web (HTML/CSS)</option>
+                        <option value="app">Application Desktop (Java/Python)</option>
+                        <option value="arduino">Système Embarqué (Arduino)</option>
+                        <option value="design">Design Graphique</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="besoin">Décrivez votre besoin :</label>
+                    <textarea id="besoin" name="besoin" rows="4" required
+                        placeholder="Ex: Je veux un site pour ma boutique..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="deadline">Délai souhaité :</label>
+                    <input type="date" id="deadline" name="deadline">
+                </div>
+
+                <button type="submit" class="submit-button">Envoyer la demande</button>
+            </form>
         </section>
     </main>
     <footer>© 2026 SOULEYMANE FAYE</footer>
