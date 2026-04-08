@@ -223,7 +223,7 @@ footer {
     font-size: 0.8rem;
     letter-spacing: 1px;
 }
-/* --- Styles des Formulaires --- */
+/* --- Styles des Formulaires (Version Finale Corrigée) --- */
 
 .request-container {
     margin-top: 40px;
@@ -248,19 +248,21 @@ footer {
     font-weight: 600;
 }
 
-/* Style des champs de saisie */
+/* Style des champs de saisie - Correction de visibilité du texte */
 input[type="text"],
 input[type="date"],
+input[type="email"],
 select,
 textarea {
     padding: 12px 15px;
     background-color: #0f0f0f;
     border: 1px solid #2a2a2a;
     border-radius: 10px;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    color: #ffffff !important;
+    /* Force l'écriture en blanc */
+    font-family: inherit;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 input:focus,
@@ -268,9 +270,11 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary);
+    background-color: #1a1a1a;
+    /* Légère éclaircie au clic */
 }
 
-/* Boutons */
+/* Bouton Envoyer du formulaire contact */
 .submit-button {
     background-color: var(--primary);
     color: #000;
@@ -283,39 +287,43 @@ textarea:focus {
     letter-spacing: 1px;
 }
 
-.search-section {
-    margin: 30px 0 50px 0;
-}
+/* --- Correction de la Barre de Recherche --- */
 
 .search-wrapper {
     display: flex;
-    max-width: 600px;
-    margin: 0 auto;
-    gap: 10px;
+    /* Aligne l'input et le bouton sur la même ligne */
+    background-color: #0f0f0f;
+    border: 1px solid #333;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 50px;
+    /* On fixe une hauteur pour que ce soit propre */
 }
 
 .search-wrapper input {
     flex: 1;
-    border-radius: 30px;
+    /* L'input prend tout l'espace libre à gauche */
+    background: transparent !important;
+    border: none !important;
+    padding: 0 20px;
+    color: white !important;
+    font-size: 1rem;
+    outline: none;
+    min-width: 0;
+    /* Important pour éviter que l'input ne pousse le bouton dehors */
 }
 
 .search-button {
-    padding: 0 25px;
-    border-radius: 30px;
+    width: auto;
+    /* Le bouton ne prend que la place de son texte */
+    padding: 0 30px;
     background: var(--primary);
     border: none;
+    color: black;
     font-weight: bold;
     cursor: pointer;
-}
-
-/* Cacher le label de recherche visuellement mais le garder pour l'accessibilité */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    height: 100%;
+    /* Prend toute la hauteur de la barre */
+    border-radius: 0 50px 50px 0;
+    /* Arrondi seulement à droite */
 }
