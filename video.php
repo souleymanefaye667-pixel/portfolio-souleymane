@@ -5,22 +5,11 @@
     <meta charset="UTF-8">
     <title>Présentation Vidéo | SF</title>
     <link rel="icon" type="image/png" href="images/Logos.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div style="font-weight:800; color:var(--primary);">SF.DESIGN</div>
-            <div class="nav-links">
-                <a href="index.html">Accueil</a>
-                <a href="about.html">Parcours</a>
-                <a href="projects.html">Projets</a>
-                <a href="video.html">Vidéo</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
+   <?php require 'composants/navigation.php'; ?>
     <main>
         <h1>MA PRÉSENTATION</h1>
         <section>
@@ -35,7 +24,7 @@
             </p>
         </section>
     </main>
-    <footer>© 2026 SOULEYMANE FAYE</footer>
+   <?php require 'composants/pied-de-page.php'; ?>
 </body>
 
 </html>

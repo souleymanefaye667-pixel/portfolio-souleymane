@@ -5,22 +5,11 @@
     <meta charset="UTF-8">
     <title>Souleymane Faye | Portfolio</title>
     <link rel="icon" type="image/png" href="images/Logos.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div style="font-weight:800; color:var(--primary); font-size: 1.2rem;">SF.DESIGN</div>
-            <div class="nav-links">
-                <a href="index.html">Accueil</a>
-                <a href="about.html">Parcours</a>
-                <a href="projects.html">Projets</a>
-                <a href="video.html">Vidéo</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
+   <?php require 'composants/navigation.php'; ?>
     <main>
         <h1>DÉVELOPPEUR & CRÉATIF</h1>
         <section>
@@ -49,7 +38,7 @@
             </div>
         </section>
     </main>
-    <footer>© 2026 SOULEYMANE FAYE • DAKAR, SÉNÉGAL</footer>
+    <?php require 'composants/pied-de-page.php'; ?>
 </body>
 
 </html>

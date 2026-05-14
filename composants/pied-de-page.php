@@ -1,0 +1,1 @@
+  <footer>© 2026 SOULEYMANE FAYE</footer>

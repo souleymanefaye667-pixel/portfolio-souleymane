@@ -5,22 +5,11 @@
     <meta charset="UTF-8">
     <title>Détails Projets | SF.DESIGN</title>
     <link rel="icon" type="image/png" href="images/Logos.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div style="font-weight:800; color:var(--primary);">SF.DESIGN</div>
-            <div class="nav-links">
-                <a href="index.html">Accueil</a>
-                <a href="about.html">Parcours</a>
-                <a href="projects.html">Projets</a>
-                <a href="video.html">Vidéo</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
+<?php require 'composants/navigation.php'; ?>
 
     <main>
         <h1>DÉTAILS TECHNIQUES</h1>
@@ -67,9 +56,23 @@
                 </p>
             </div>
         </section>
+         <section id="agro">
+            <h2>04. Agro SOLARIS</h2>
+            <img src="./images/agro exe.jpg" alt="Aperçu agro"
+                style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);">
+
+            <div style="padding-left: 20px;">
+                <p>• <strong>Langage :</strong> HTML CSS et PHP pour interactivité de l'interface le dynamisme</p>
+                <p>• <strong>Utilité:</strong> Facilite la connexion entre les divers fournisseurs aux quatres coins du senegal
+                </p>
+                <p>• <strong>Adaptabilité:</strong> Interface cross platforme accessible sur divers appareils </p>
+                <p>• <strong>Innovation :</strong> Utilisation de la resource solaire qui est souvent banalisée et négligée
+                </p>
+            </div>
+        </section>
     </main>
 
-    <footer>© 2026 SOULEYMANE FAYE</footer>
+    <?php require 'composants/pied-de-page.php'; ?>
 </body>
 
 </html>

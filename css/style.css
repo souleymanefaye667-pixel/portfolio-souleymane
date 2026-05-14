@@ -43,7 +43,7 @@ body {
     align-items: center;
 }
 
-.nav-links a {
+.nav-links a{
     color: white;
     text-decoration: none;
     margin-left: 25px;
@@ -54,6 +54,10 @@ body {
     letter-spacing: 1px;
 }
 
+.nav-links a.actif{
+    color   :var(--primary);
+    font-weight: bold;
+}
 .nav-links a:hover {
     color: var(--primary);
 }
@@ -326,4 +330,68 @@ textarea:focus {
     /* Prend toute la hauteur de la barre */
     border-radius: 0 50px 50px 0;
     /* Arrondi seulement à droite */
+}
+.error{
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: block;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translate(-5px);}
+    to{opacity: 1;transform: translate(0);}
+}
+/* Style pour la boîte de succès */
+.success-box {
+    background-color: rgba(46, 204, 113, 0.1);
+    /* Vert très léger */
+    border: 1px solid #2ecc71;
+    /* Bordure verte */
+    color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-box h3 {
+    color: #2ecc71;
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.success-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.success-box li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    border-left: 3px solid #2ecc71;
+    padding-left: 10px;
+}
+
+.success-box li strong {
+    color: #2ecc71;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+/* Petite animation pour l'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
