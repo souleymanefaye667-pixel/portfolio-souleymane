@@ -11,6 +11,9 @@
 <body>
     <?php require 'composants/navigation.php'; ?>
     <?php 
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    var_dump($_SESSION);}
     require_once 'fonctions.php';
     require_once 'config/connexion.php';
     $erreurs =[];
@@ -102,8 +105,8 @@
                 </div>
                 <?php if (isset($succes)) echo "<p style='color: #00ffcc;'>$succes</p>"; ?>
                 <?php if (isset($erreurs['global'])) echo "<p class='error'>" . $erreurs['global'] . "</p>"; ?>
-                <form action="contact.php" method="POST" name="submit_message" action="contact.php">
-                    <input type="hidden" name="csrf_token" value="<?php echo generer_token_csrf(); ?>">
+              <form action="contact.php" method="POST">
+                 <input type="hidden" name="csrf_token" value="<?php echo generer_token_csrf(); ?>">
                     <div class="form-group"><input type="text" placeholder="Votre nom complet" name="nom" value="<?php echo htmlspecialchars($nom); ?>">
                     <?php if(isset($erreurs['nom'])) echo "<span class = 'error'>".$erreurs['nom']."</span>"; ?>
                 </div>
