@@ -11,37 +11,19 @@
 <body>
    <?php require 'composants/navigation.php'; ?>
    <?php 
-   $projets=[
-    [
-        "id"=> "resto",
-        "titre"=> "Restaurant Online",
-        "image"=> "./images/resto.jpg",
-        "description"=> "Interface de commmande digitalisée pour services de livraison.",
-        "techno"=>"PHP & MySQL"
-    ],
-     [
-        "id"=> "jeu",
-        "titre"=> "Jeu Video PC",
-        "image"=> "./images/jeux.jpg",
-        "description"=> "Concept de jeu immersif developpé sous Unreal Engine.",
-        "techno"=>"C++ & Unreal"
-    ],
-     [
-        "id"=> "pro",
-        "titre"=> "Biotech Software",
-        "image"=> "./images/prothèse.jpg",
-        "description"=> "Logiciel de paramètrae pour prothèses intelligentes.",
-        "techno"=>"Python & Arduino"
-    ],
-       [
-        "id"=> "agro",
-        "titre"=> "Agro Solaris",
-        "image"=> "./images/agro.jpg",
-        "description"=> "Plateforme alternative pour une agriculture durable et l'utilisation du solaire.",
-        "techno"=>"PHP && HTML/CSS"
-    ],
-   ];
-   $recherche=isset($_GET['q'])? strtolower(trim($_GET['q'])):'';
+     require_once 'config/connexion.php';
+    $recherche=isset($_GET['q'])? strtolower(trim($_GET['q'])):'';
+    if(!empty($recherche)){
+        $sql ="SELECT* FROM projets WHERE titre LIKE :recherche OR technologies LIKE :recherche ORDER BY id DESC";
+        $stmt=$bdd->prepare($sql);
+        $stmt->execute(['recherche'=>'%'.$recherche.'%']);
+
+        }else{
+            $sql="SELECT* FROM projets ORDER BY id DESC";
+            $stmt=$bdd->query($sql);
+        }
+        $projets=$stmt->fetchAll();
+    
    ?>
 
     <main>
@@ -57,26 +39,32 @@
         </section>
         </section>
         <h1>RÉALISATIONS</h1>
-        <div class="grid">
-            <?php 
-            foreach($projets as $p):
-                if($recherche !==''&& strpos(strtolower($p['titre']),$recherche)===false&&
-                strpos(strtolower($p['techno']),$recherche)===false){
-                    continue;
-                }
-                ?>
-                
-            <div class="card">
-                <img src="<?php echo $p['image'];?>" alt="<?php echo $p['titre'];?>">
-                <div class="card-body">
-                    <h3><?php echo $p['titre']; ?></h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px;"><?php echo $p['description']; ?></p>
-                    <a href="grand.php#<?php echo $p['id']; ?>"
-                        style="color: var(--primary); text-decoration: none; font-weight: 600;">VOIR DÉTAILS →</a>
-                </div>
-            </div>
-            <?php endforeach;  ?>
+       <div class="grid">
+    <?php 
+    foreach($projets as $p):
+        $nom_image = basename($p['image']); 
+        $chemin_image = 'images/projets/' . $nom_image;
+    ?>
+    
+    <div class="card">
+        <img src="<?php echo htmlspecialchars($chemin_image); ?>" 
+             alt="<?php echo htmlspecialchars($p['titre']); ?>"
+             style="width: 100%; height: 200px; object-fit: cover;">
+        
+        <div class="card-body">
+            <h3><?php echo htmlspecialchars($p['titre']); ?></h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px;">
+                <?php echo htmlspecialchars($p['description']); ?>
+            </p>
+            <p style="font-weight: bold; color: var(--primary);">
+                Techno: <?php echo htmlspecialchars($p['technologies']); ?>
+            </p>
+            <a href="grand.php?id=<?php echo htmlspecialchars($p['id']); ?>" 
+               style="color: var(--primary); text-decoration: none; font-weight: 600;">VOIR DÉTAILS →</a>
         </div>
+    </div>
+    <?php endforeach; ?>
+</div>
     </main>
 
    <?php require 'composants/pied-de-page.php'; ?>

@@ -19,10 +19,7 @@ $page_courante = basename($_SERVER['PHP_SELF']);
     <?php if ($page_courante === 'projects.php') echo 'class="actif"'; ?>>
     Projets
   </a>
-   <a href='grand.php'
-    <?php if ($page_courante === 'grand.php') echo 'class="actif"'; ?>>
-    Details Techniques
-  </a>
+  
    <a href='video.php'
     <?php if ($page_courante === 'video.php') echo 'class="actif"'; ?>>
     Video

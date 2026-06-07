@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <?php require 'composants/navigation.php'; ?>
+    <?php require 'composants/navigation.php';
+    require_once 'config/connexion.php';
+    ?>
     <main>
         <h1>MON PARCOURS</h1>
 

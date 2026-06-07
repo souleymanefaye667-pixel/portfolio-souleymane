@@ -9,68 +9,48 @@
 </head>
 
 <body>
-<?php require 'composants/navigation.php'; ?>
+<?php require 'composants/navigation.php'; 
+require_once 'config/connexion.php';
+$id_projet = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if($id_projet > 0){
+    $sql = "SELECT* FROM projets WHERE id=:id";
+    $stmt=$bdd->prepare($sql);  
+    $stmt->execute(['id'=>$id_projet]);
+    $projet=$stmt->fetch();
+    if(!$projet){
+        header("Location: projects.php");
+        exit;
+    }
+?>
 
     <main>
         <h1>DÉTAILS TECHNIQUES</h1>
-
-        <section id="resto">
-            <h2>01. Restaurant Online</h2>
-            <img src="./images/resto exo.jpg" alt="Aperçu Restaurant"
-                style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);">
-
-            <div style="padding-left: 20px;">
-                <p>• <strong>Frontend :</strong> Utilisation de HTML5 et CSS3 pour une interface responsive.</p>
-                <p>• <strong>Langage :</strong> JavaScript pour la gestion du panier et des calculs en temps réel.</p>
-                <p>• <strong>Base de données :</strong> PHP et MySQL pour le stockage des menus et des commandes.</p>
-                <p>• <strong>Objectif :</strong> Digitaliser la prise de commande pour réduire le temps d'attente.</p>
+        <?php if(isset($projet) && $projet): ?>
+            <section id="projet-unique">
+                <h2><?php echo htmlspecialchars($projet['titre']); ?></h2>
+<?php 
+    $chemin_correct = 'images/projets/' . basename($projet['image']); 
+?>
+<img src="<?php echo htmlspecialchars($chemin_correct); ?>" 
+     alt="<?php echo htmlspecialchars($projet['titre']); ?>" 
+     style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);"
+     >
+            <div style="padding-left:20px;">
+                <p><?php echo nl2br(htmlspecialchars($projet['description'])); ?></p>
+                <p style="margin-top:15px;"><strong>Technologies utilisées :</strong> <?php echo htmlspecialchars($projet['technologies']); ?></p>
             </div>
-        </section>
+            <br>
 
-        <section id="jeu">
-            <h2>02. Jeu Vidéo PC</h2>
-            <img src="./images/jeu exe.jpg" alt="Aperçu Jeu"
-                style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);">
+            </section>
+            <?php else: ?>
+                <p>Projet non trouvé.</p>
+            <?php endif; ?>
+        <?php } ?>
 
-            <div style="padding-left: 20px;">
-                <p>• <strong>Moteur :</strong> Développement réalisé sous Unreal Engine 5.</p>
-                <p>• <strong>Programmation :</strong> Scripting logique en Python et Blueprints.</p>
-                <p>• <strong>Graphismes :</strong> Modélisation des environnements et gestion de la physique des objets.
-                </p>
-                <p>• <strong>Expérience :</strong> Création d'un univers immersif avec gestion de la caméra à la
-                    première personne.</p>
-            </div>
-        </section>
-
-        <section id="pro">
-            <h2>03. Biotech & Sécurité</h2>
-            <img src="./images/pro exe.jpg" alt="Aperçu Sécurité"
-                style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);">
-
-            <div style="padding-left: 20px;">
-                <p>• <strong>Langage :</strong> Java pour le logiciel de contrôle biométrique.</p>
-                <p>• <strong>Sécurité :</strong> Implémentation de protocoles de chiffrement pour protéger les données.
-                </p>
-                <p>• <strong>Interface :</strong> Monitoring en temps réel des capteurs via une console Java Swing.</p>
-                <p>• <strong>Innovation :</strong> Algorithme d'analyse des signaux pour la précision des mouvements.
-                </p>
-            </div>
-        </section>
-         <section id="agro">
-            <h2>04. Agro SOLARIS</h2>
-            <img src="./images/agro exe.jpg" alt="Aperçu agro"
-                style="width: 100%; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--border);">
-
-            <div style="padding-left: 20px;">
-                <p>• <strong>Langage :</strong> HTML CSS et PHP pour interactivité de l'interface le dynamisme</p>
-                <p>• <strong>Utilité:</strong> Facilite la connexion entre les divers fournisseurs aux quatres coins du senegal
-                </p>
-                <p>• <strong>Adaptabilité:</strong> Interface cross platforme accessible sur divers appareils </p>
-                <p>• <strong>Innovation :</strong> Utilisation de la resource solaire qui est souvent banalisée et négligée
-                </p>
-            </div>
-        </section>
     </main>
+     <a href="projects.php" style="background-color: #333; color: #fff; font-weight: bold; text-transform: uppercase; padding: 12px 24px; border-radius: 8px; text-decoration: none; text-align: center; flex: 1;">Retourner en arrière</a>
+        
+</body>
 
     <?php require 'composants/pied-de-page.php'; ?>
 </body>
